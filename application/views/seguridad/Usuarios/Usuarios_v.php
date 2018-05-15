@@ -42,7 +42,7 @@
                   <a href="#">Seguridad</a>
                 </li>
                 <li>
-                  <a class="active">Perfil de Usuarios</a>
+                  <a class="active">Usuarios</a>
                 </li>
 
               </ol>

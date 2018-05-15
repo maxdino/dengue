@@ -42,7 +42,7 @@
                   <a href="#">Seguridad</a>
                 </li>
                 <li>
-                  <a href="<?php echo base_url();?>Usuarios_c">Perfil de Usuario</a>
+                  <a href="<?php echo base_url();?>Usuarios_c">Usuario</a>
                 </li>
                 <li>
                   <a class="active">Agregar</a>
@@ -84,7 +84,7 @@
                       <button class="btn btn-primary waves-effect waves-light" id="agregar" type="submit"><i class="fa fa-save"></i>
                         Guardar
                       </button>
-                      <a type="reset" href="<?php echo base_url();?>Perfil_usuario_c" class="btn btn-danger waves-effect waves-light m-l-5 pull-left"><i class="fa fa-sign-out"></i>
+                      <a type="reset" href="<?php echo base_url();?>Usuarios_c" class="btn btn-danger waves-effect waves-light m-l-5 pull-left"><i class="fa fa-sign-out"></i>
                         Cancelar
                       </a>
                     </div>
