@@ -42,7 +42,7 @@
                   <a href="#">Seguridad</a>
                 </li>
                 <li>
-                  <a href="<?php echo base_url();?>Usuarios_c">Usuario</a>
+                  <a href="<?php echo base_url();?>Usuarios_c">Usuarios</a>
                 </li>
                 <li>
                   <a class="active">Agregar</a>
