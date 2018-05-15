@@ -56,7 +56,7 @@
                 <div class="card-box">
                     <div class="row">
                     <div class="col-md-6">                   
-                  <form action="<?php echo base_url();?>Perfil_usuario_c/agregar" method="post" data-parsley-validate novalidate>
+                  <form action="" method="post" data-parsley-validate novalidate>
                    
                     <div class="form-group">
                       <label for="nombres">Nombres*</label>
@@ -72,11 +72,13 @@
                     </div>
                     <div class="form-group">
                       <label for="clave">Contraseña*</label>
-                      <input type="password" name="clave" parsley-trigger="change" required placeholder="Escribe su contraseña" class="form-control" id="clave">
+                      <input type="password" name="clave" parsley-trigger="change" required placeholder="Escribe su contraseña" class="form-control" id="clave" onkeyup="limpiar()" >
+                      <div id="no_clave" style="display: none; color:red; font-size: 12px;">Las contraseñas no coinciden</div> 
                     </div>
                     <div class="form-group">
                       <label for="clave_con">Confirmar Contraseña*</label>
-                      <input type="password" name="clave_con" parsley-trigger="change" required placeholder="Escribe su contraseña para confirmar" class="form-control" id="clave_con">
+                      <input type="password" name="clave_con" parsley-trigger="change" required placeholder="Escribe su contraseña para confirmar" class="form-control" id="clave_con" onkeyup="limpiar()">
+                     <div id="no_clave_con" style="display: none; color:red; font-size: 12px; ">Las contraseñas no coinciden</div> 
                     </div>
                     <div class="form-group text-right m-b-0">
                       <button class="btn btn-primary waves-effect waves-light" id="agregar" type="submit"><i class="fa fa-save"></i>
@@ -120,7 +122,56 @@
 <?php include('includes/js.inc'); ?>
 
 <script>
+$("form").on("submit", function(event) {
+    var nombres = $('#nombres').val();
+    var apellidos = $('#apellidos').val();
+    var usuario = $('#usuario').val();
+    var clave = $('#clave').val();
+    var clave_con = $('#clave_con').val();
+    event.preventDefault();
+    if (clave==clave_con) {
+       
+        $.ajax({
+          url: "<?php echo base_url();?>Usuarios_c/agregar",
+          data: {nombres : nombres,apellidos : apellidos,nombres : nombres,usuario : usuario,clave : clave},
+            type : 'POST',
+          success: function(result){
+            $('#no_clave').css('display','none');
+            $('#no_clave_con').css('display','none');
+            $('#clave').css('border-color','');
+            $('#clave_con').css('border-color','');
+            window.location = '../Usuarios_c';
+        }
+      });
+      }else{
+        $('#no_clave').css('display','block');
+        $('#no_clave_con').css('display','block');
+        $('#clave').css('border-color','red');
+        $('#clave_con').css('border-color','red');
+      }
+    });
 
+function limpiar(){
+if ($('#no_clave').val()=='') {
+  $('#no_clave').css('display','none');
+}
+if ($('#no_clave_con').val()=='') {
+  $('#no_clave_con').css('display','none');
+}
+}
+/*
+$.ajax({
+    url: 'php/upload.php',
+    data: $('#file').attr('files'),
+    cache: false,
+    contentType: 'multipart/form-data',
+    processData: false,
+    type: 'POST',
+    success: function(data){
+        alert(data);
+    }
+});
+*/
 </script>
 </body>
 </html>
