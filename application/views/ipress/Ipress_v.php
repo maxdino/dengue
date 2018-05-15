@@ -61,25 +61,25 @@
                 <tr>
                   <th>ID</th>
                   <th>NOMBRE IPRESS</th>
-                  <th>CODIGO</th>
+                  <th>CATEGORIA</th>
+                  <th>TIPO</th>
                   <th>PROVINCIA</th>
                   <th>DISTRITO</th>
-                  <th>RESOLUCION</th>
                   <th>FECHA</th>
                   <th style="width:60px;"></th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php  foreach($ipress as $value){ ?>
-                <tr id="<?php echo $value->id_ipress; ?>">
-                  <td><?php echo $value->id_ipress; ?></td>
-                  <td><?php echo $value->ipress; ?></td>
+                <tr id="<?php echo $value->codigo; ?>">
                   <td><?php echo $value->codigo; ?></td>
+                  <td><?php echo $value->ipress; ?></td>
+                   <td><?php echo $value->categorias; ?></td>
+                    <td><?php echo $value->tipos; ?></td>
                   <td><?php echo $value->provincias; ?></td>
                   <td><?php echo $value->distritos; ?></td>
-                  <td><?php echo $value->resolucion; ?></td>
                   <td><?php echo $value->fecha; ?></td>
-                  <td ><a class="btn btn-icon waves-effect waves-light btn-primary" href="<?php echo base_url().'Ipress_c/editar/'.$value->id_ipress;?>" ><i class="fa fa-pencil"></i></a> <button class="btn btn-icon waves-effect waves-light btn-danger" onclick="mostrar_eliminar(<?php echo $value->id_ipress; ?>)"  data-toggle="modal" data-target="#eliminar_modal" > <i class="fa fa-trash"></i> </button></td>
+                  <td ><a class="btn btn-icon waves-effect waves-light btn-primary" href="<?php echo base_url().'Ipress_c/editar/'.$value->codigo;?>" ><i class="fa fa-pencil"></i></a> <button class="btn btn-icon waves-effect waves-light btn-danger" onclick="mostrar_eliminar(<?php echo $value->codigo; ?>)"  data-toggle="modal" data-target="#eliminar_modal" > <i class="fa fa-trash"></i> </button></td>
                 </tr>
                 <?php  } ?>
                 </tbody>

@@ -11,8 +11,10 @@ class Ipress_m extends CI_Model {
 	{
 		$this->db->select("*");
 		$this->db->from("ipress");
-		$this->db->join("provincias","provincias.id_provincias=ipress.provincia");
 		$this->db->join("distritos","distritos.id_distritos=ipress.distrito");
+		$this->db->join("provincias","provincias.id_provincias=distritos.id_provincias");
+		$this->db->join("categorias","ipress.categoria=categorias.id_categorias");
+		$this->db->join("tipos","ipress.tipo=tipos.id_tipos");
 		$r = $this->db->get();  
 		return $r->result();
 	}
@@ -21,7 +23,7 @@ class Ipress_m extends CI_Model {
 	{
 		$this->db->select("*");
 		$this->db->from("ipress");
-		$this->db->where("id_ipress",$id);
+		$this->db->where("codigo",$id);
 		$r = $this->db->get();  
 		return $r->result();
 	}
@@ -58,6 +60,14 @@ class Ipress_m extends CI_Model {
 		return $r->result();
 	}
 
+	public function departamentos()
+	{
+		$this->db->select("*");
+		$this->db->from("departamentos");
+		$r = $this->db->get();  
+		return $r->result();
+	}
+
 	public function provincias()
 	{
 		$this->db->select("*");
@@ -76,18 +86,15 @@ class Ipress_m extends CI_Model {
 
 	public function agregar()
 	{
-		$fecha= new DateTime($this->input->post("fecha"));
-		$fecha1 = $fecha->format('Y-m-d');
 		$datos = array(
 			"ipress" => $this->input->post("ipress"),
 			"microred" => $this->input->post("microred"),
 			"tipo" => $this->input->post("tipos"),
 			"categoria" => $this->input->post("categorias"),
 			"codigo" => $this->input->post("codigo"),
-			"provincia" => $this->input->post("provincias"),
 			"distrito" => $this->input->post("distritos"),
 			"resolucion" => $this->input->post("resolucion"),
-			"fecha" => $fecha1,
+			"fecha" => $this->input->post("fecha"),
 		);
 		$this->db->insert("ipress",$datos);
 	}
@@ -101,19 +108,17 @@ class Ipress_m extends CI_Model {
 			"microred" => $this->input->post("microred"),
 			"tipo" => $this->input->post("tipos"),
 			"categoria" => $this->input->post("categorias"),
-			"codigo" => $this->input->post("codigo"),
-			"provincia" => $this->input->post("provincias"),
 			"distrito" => $this->input->post("distritos"),
 			"resolucion" => $this->input->post("resolucion"),
 			"fecha" => $fecha1,
 		);
-		$this->db->where("id_ipress",$this->input->post("id"));
+		$this->db->where("codigo",$this->input->post("id"));
 		$this->db->update("ipress",$datos);
 	}
 
 	public function eliminar()
 	{
-		$this->db->where("id_ipress",$this->input->post("id"));
+		$this->db->where("codigo",$this->input->post("id"));
 		$this->db->delete("ipress",$datos);
 	}
 }
