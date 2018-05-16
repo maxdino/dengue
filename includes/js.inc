@@ -31,6 +31,7 @@
 <script src="<?php echo base_url(); ?>public/assets/pages/jquery.form-advanced.init.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/js/jquery.core.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/js/jquery.app.js"></script>
+ 
 <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/pages/jquery.sweet-alert.init.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/pages/jquery.form-pickers.init.js"></script>

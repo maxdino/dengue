@@ -33,7 +33,7 @@
             <div class="row">
               <div class="col-sm-12">
 
-                <h4 class="page-title">REGISTRAR NUEVO USUARIO</h4>
+                <h4 class="page-title">MODIFICAR USUARIO</h4>
                 <ol class="breadcrumb">
                   <li>
                     <a href="<?php echo base_url();?>Principal_c">Principal</a>

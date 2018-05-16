@@ -47,7 +47,7 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <div class="card-box table-responsive" style="background-image: url('public/assets/images/fondo_login1.jpg');  height: 400px;">
+              <div class="card-box table-responsive" style="background-image: url('public/assets/images/fondo_principal1.jpg');  height: 500px;">
 
               </div>
             </div>

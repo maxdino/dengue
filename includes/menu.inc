@@ -33,8 +33,8 @@
                         <li class="dropdown top-menu-item-xs">
                             <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="https://scontent.flim5-3.fna.fbcdn.net/v/t1.0-1/p160x160/24774781_939237826231205_7207010486429044126_n.jpg?_nc_cat=0&oh=c4dc6884cbc598f258ec6ae5372be4b6&oe=5B574564" alt="user-img" class="img-circle"> </a>
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-settings m-r-10 text-custom"></i> Settings</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Perfil</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-settings m-r-10 text-custom"></i> Configuración</a></li>
                                 <li><a href="javascript:void(0)"><i class="ti-lock m-r-10 text-custom"></i> Lock screen</a></li>
                                 <li class="divider"></li>
                                 <li><a href="<?php echo base_url();?>Principal_c/logout"><i class="ti-power-off m-r-10 text-danger"></i> Desconectar</a></li>
@@ -70,7 +70,15 @@
                         <li><a href="<?php echo base_url();?>Red_c"><i class="fa fa-wifi"></i>Red</a></li>
                     </ul>
                 </li>
-
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-file-text-o"></i> <span> Reportes </span> <span class="menu-arrow"></span> </a>
+                    <ul class="list-unstyled">
+                        <li><a href="<?php echo base_url();?>Reportes_ipress_c""><i class="fa fa-file-archive-o"></i>Reportes Ipress</a></li>
+                        <li><a href="<?php echo base_url();?>Privilegios_c"><i class="fa  fa-key"></i>Permisos</a></li>
+                        <li><a href="<?php echo base_url();?>Perfil_usuario_c"><i class="fa  fa-slideshare"></i>Perfil de Usuarios</a></li>  
+                        <li><a href="<?php echo base_url();?>Modulo_c"><i class="fa fa-file"></i>Modulos</a></li>
+                    </ul>
+                </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="ion-locked"></i> <span> Seguridad </span> <span class="menu-arrow"></span> </a>
                     <ul class="list-unstyled">
@@ -81,33 +89,6 @@
                     </ul>
                 </li>
                
-    
-
-    <li class="text-muted menu-title">Reportes</li>
-
-    <li class="has_sub">
-        <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i><span> Crm </span> <span class="menu-arrow"></span></a>
-        <ul class="list-unstyled">
-            <li><a href="crm-dashboard.html"> Dashboard </a></li>
-            <li><a href="crm-contact.html"> Contacts </a></li>
-            <li><a href="crm-opportunities.html"> Opportunities </a></li>
-            <li><a href="crm-leads.html"> Leads </a></li>
-            <li><a href="crm-customers.html"> Customers </a></li>
-        </ul>
-    </li>
-
-    <li class="has_sub">
-        <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="label label-warning pull-right">6</span><span> eCommerce </span></a>
-        <ul class="list-unstyled">
-            <li><a href="ecommerce-dashboard.html"> Dashboard</a></li>
-            <li><a href="ecommerce-products.html"> Products</a></li>
-            <li><a href="ecommerce-product-detail.html"> Product Detail</a></li>
-            <li><a href="ecommerce-product-edit.html"> Product Edit</a></li>
-            <li><a href="ecommerce-orders.html"> Orders</a></li>
-            <li><a href="ecommerce-sellers.html"> Sellers</a></li>
-        </ul>
-    </li>
-
 </ul>
 <div class="clearfix"></div>
 </div>

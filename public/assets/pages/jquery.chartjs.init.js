@@ -12,9 +12,9 @@ File: Chartjs
     var ChartJs = function() {};
 
     ChartJs.prototype.respChart = function(selector,type,data, options) {
-        // get selector by context
+        // Obtener selector por contexto
         var ctx = selector.get(0).getContext("2d");
-        // pointing parent container to make chart js inherit its width
+        // Señalar el contenedor principal para hacer que el gráfico js herede su ancho
         var container = $(selector).parent();
 
         // enable resizing matter

@@ -26,10 +26,10 @@ class Exportar_c extends CI_Controller {
 		->setCreator("MDH")
 		->setLastModifiedBy("Códigos de Programación")
 		->setTitle("Excel en PHP")
-		->setSubject("Documento de prueba")
+		->setSubject("Documento de Trabajo")
 		->setDescription("Documento generado con PHPExcel")
 		->setKeywords("excel phpexcel php")
-		->setCategory("Ejemplos");
+		->setCategory("Practicas Profesional II");
 		//propiedades de la hoja
 		$objPHPExcel->setActiveSheetIndex(0);
 		$objPHPExcel->getActiveSheet()->setTitle('Hoja 1');
