@@ -54,20 +54,42 @@ class Reportes_ipress_c extends CI_Controller {
  		$objPHPExcel->getActiveSheet()->setCellValue('J5', 'Distrito');
  		$objPHPExcel->getActiveSheet()->setCellValue('K3', 'Nº Resolución');
  		$objPHPExcel->getActiveSheet()->setCellValue('L3', 'Fecha');
-		$objPHPExcel->getActiveSheet()->mergeCells('A1:L1');
-		$objPHPExcel->getActiveSheet()->mergeCells('A2:L2');
-		$objPHPExcel->getActiveSheet()->mergeCells('A3:A5');
-		$objPHPExcel->getActiveSheet()->mergeCells('B3:C3');
-		$objPHPExcel->getActiveSheet()->mergeCells('B4:B5');
-		$objPHPExcel->getActiveSheet()->mergeCells('C4:C5');
-		$objPHPExcel->getActiveSheet()->mergeCells('D3:D5');
-		$objPHPExcel->getActiveSheet()->mergeCells('E3:E5');
-		$objPHPExcel->getActiveSheet()->mergeCells('F3:F5');
-		$objPHPExcel->getActiveSheet()->mergeCells('G3:G5');
-		$objPHPExcel->getActiveSheet()->mergeCells('H3:H5');
-		$objPHPExcel->getActiveSheet()->mergeCells('I3:J4');
-		$objPHPExcel->getActiveSheet()->mergeCells('K3:K5');
-		$objPHPExcel->getActiveSheet()->mergeCells('L3:L5');
+
+ 		$cantidad_red = $this->db->query("select count(red_salud) as cantidad FROM red_salud INNER JOIN microred ON microred.red = red_salud.id_red INNER JOIN ipress ON ipress.microred = microred.id_microred GROUP BY id_red")->result();
+ 		$cant_red=array();
+ 		$ubi_red=array();
+ 		foreach ($cantidad_red as $val_cant) {
+ 			array_push($cant_red , $val_cant->cantidad);
+ 		}	
+ 		$cantidad_microred = $this->db->query("select count(id_microred) as cantidad FROM red_salud INNER JOIN microred ON microred.red = red_salud.id_red INNER JOIN ipress ON ipress.microred = microred.id_microred GROUP BY id_microred")->result();
+ 		$cant_microred = array();
+ 		foreach ($cantidad_microred as $val_cant) {
+ 			array_push($cant_microred , $val_cant->cantidad);
+ 		}	
+ 		$r = $this->db->query("select red_salud.id_red,red_salud.red_salud,microred.microred as microred from red_salud INNER JOIN microred ON microred.red = red_salud.id_red INNER JOIN ipress ON ipress.microred = microred.id_microred")->result();
+		$i=6; $i_red=6; $cont=1;
+		$red_existe=array();$microred_existe=array();
+		$ubi_microred=array();
+		foreach ($r as  $value) {
+		if(!in_array($value->id_red, $red_existe)){
+		$objPHPExcel->getActiveSheet()->setCellValue('A'.$i, $value->red_salud);
+		array_push($red_existe , $value->id_red);
+		array_push($ubi_red , $i);
+		
+		}
+		if(!in_array($value->microred, $microred_existe)){
+		$objPHPExcel->getActiveSheet()->setCellValue('C'.$i, $value->microred);
+		array_push($microred_existe , $value->microred);
+		array_push($ubi_microred , $i);
+		$objPHPExcel->getActiveSheet()->setCellValue('B'.$i, $cont);
+		$cont++; 
+		}
+		
+			
+		$i++;
+		}	 
+		
+
 		$titulo = array(
 			'font' => array(
 				'name'      => 'Calibri',
@@ -115,7 +137,7 @@ class Reportes_ipress_c extends CI_Controller {
 				'wrap'  => true,
 			)
 		);
-		$estiloTitulovertical = array(
+		$estilo_redsalud = array(
 			'font' => array(
 				'name'  => 'calibri',
 				'bold'  => true,
@@ -136,11 +158,42 @@ class Reportes_ipress_c extends CI_Controller {
 				)
 			),
 			'alignment' =>  array(
+				'wrap'  => true,
 				'horizontal'=> PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 				'vertical'  => PHPExcel_Style_Alignment::VERTICAL_CENTER,
-				'rotation'   => 90,
+				//'rotation'   => 90,
+				
 			)
 		);
+
+		for ($i=0; $i < count($ubi_red); $i++) { 
+		$final_red = $cant_red[$i]+$ubi_red[$i]-1;
+		$objPHPExcel->getActiveSheet()->mergeCells('A'.$ubi_red[$i].':A'.$final_red);
+		$objPHPExcel->getActiveSheet()->getStyle('A'.$ubi_red[$i].':A'.$final_red)->applyFromArray($estilo_redsalud);
+		}
+
+		for ($i=0; $i < count($ubi_microred); $i++) { 
+		$final_red = $cant_microred[$i]+$ubi_microred[$i]-1;
+		$objPHPExcel->getActiveSheet()->mergeCells('B'.$ubi_microred[$i].':B'.$final_red);
+		$objPHPExcel->getActiveSheet()->mergeCells('C'.$ubi_microred[$i].':C'.$final_red);
+		$objPHPExcel->getActiveSheet()->getStyle('B'.$ubi_microred[$i].':B'.$final_red)->applyFromArray($estilo_redsalud);
+		$objPHPExcel->getActiveSheet()->getStyle('C'.$ubi_microred[$i].':C'.$final_red)->applyFromArray($estilo_redsalud);
+		}
+
+		$objPHPExcel->getActiveSheet()->mergeCells('A1:L1');
+		$objPHPExcel->getActiveSheet()->mergeCells('A2:L2');
+		$objPHPExcel->getActiveSheet()->mergeCells('A3:A5');
+		$objPHPExcel->getActiveSheet()->mergeCells('B3:C3');
+		$objPHPExcel->getActiveSheet()->mergeCells('B4:B5');
+		$objPHPExcel->getActiveSheet()->mergeCells('C4:C5');
+		$objPHPExcel->getActiveSheet()->mergeCells('D3:D5');
+		$objPHPExcel->getActiveSheet()->mergeCells('E3:E5');
+		$objPHPExcel->getActiveSheet()->mergeCells('F3:F5');
+		$objPHPExcel->getActiveSheet()->mergeCells('G3:G5');
+		$objPHPExcel->getActiveSheet()->mergeCells('H3:H5');
+		$objPHPExcel->getActiveSheet()->mergeCells('I3:J4');
+		$objPHPExcel->getActiveSheet()->mergeCells('K3:K5');
+		$objPHPExcel->getActiveSheet()->mergeCells('L3:L5');
 
 		//tamaño de celdas
 		$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
@@ -155,7 +208,7 @@ class Reportes_ipress_c extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(18);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(34);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(12);
-//		$objPHPExcel->getActiveSheet()->getRowDimension('6')->setRowHeight(45);
+		$objPHPExcel->getActiveSheet()->getRowDimension('6')->setRowHeight(35);
 
 		//stylos de celdas
 		$objPHPExcel->getActiveSheet()->getStyle('A1:L1')->applyFromArray($titulo);
@@ -174,6 +227,7 @@ class Reportes_ipress_c extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->getStyle('J5')->applyFromArray($subtitulo1);
  		$objPHPExcel->getActiveSheet()->getStyle('K3:K5')->applyFromArray($subtitulo1);
  		$objPHPExcel->getActiveSheet()->getStyle('L3:L5')->applyFromArray($subtitulo1);
+ 		
 
 // Agregar en celda A1 valor string
 /*		$objPHPExcel->getActiveSheet()->setCellValue('A1', 'PHPExcel');
