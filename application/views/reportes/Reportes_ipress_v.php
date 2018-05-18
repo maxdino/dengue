@@ -76,13 +76,16 @@
                 <h4 class="m-t-0 header-title"><b>Ipress en Red</b></h4>
                 <p class="text-muted m-b-15 font-13"></p>
 
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas id="myChart" width="400" height="470"></canvas>
               </div>
             </div>
+            <div class="col-lg-6">
+              <div class="card-box">
 
-
+                <div id="container" style="min-width: 310px; height: 600px; max-width: 600px; margin: 0 auto"></div>
+              </div>
+            </div>
           </div>
-
 
         </div> <!-- container -->
 
@@ -104,6 +107,9 @@
     var resizefunc = [];
   </script>
   <?php include('includes/js.inc'); ?>
+  <script src="<?php echo base_url();?>public/highchart/highcharts.js"></script>
+<script src="<?php echo base_url();?>public/highchart/exporting.js"></script>
+<script src="<?php echo base_url();?>public/highchart/export-data.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   <script>
     var ctx = document.getElementById("myChart").getContext('2d');
@@ -135,6 +141,33 @@
   },
 });
     });
+
+
+ 
+$.post("<?php echo base_url();?>Reportes_ipress_c/grafico_2", function(datas){  
+   $object = jQuery.parseJSON(datas);
+      var array=[]; 
+      for (var i = 0; i < $object.length; i++) {
+        array.push([$object[i].microred,parseInt($object[i].cantidad),false]);
+      }
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Ipress por Microred'
+    },
+
+    series: [{
+        type: 'pie',
+        allowPointSelect: true,
+        keys: ['name', 'y', 'selected', 'sliced'],
+        data: array
+        ,
+        showInLegend: true
+    }]
+});
+ 
+ }); 
+
   function exportar_ipress(){  
  $.post("<?php echo base_url();?>Reportes_ipress_c/exportar_ipress", function(data){  
   
