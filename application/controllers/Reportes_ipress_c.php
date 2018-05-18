@@ -133,7 +133,7 @@ class Reportes_ipress_c extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->setCellValue('A'.$i, $value->red_salud);
 		array_push($red_existe , $value->id_red);
 		array_push($ubi_red , $i);
-		
+		$cont=1;
 		}
 		if(!in_array($value->microred, $microred_existe)){
 		$objPHPExcel->getActiveSheet()->setCellValue('C'.$i, $value->microred);
