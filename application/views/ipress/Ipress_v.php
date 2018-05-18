@@ -61,6 +61,7 @@
                 <tr>
                   <th>ID</th>
                   <th>NOMBRE IPRESS</th>
+                  <th>MICRORED</th>
                   <th>CATEGORIA</th>
                   <th>TIPO</th>
                   <th>PROVINCIA</th>
@@ -74,6 +75,7 @@
                 <tr id="<?php echo $value->codigo; ?>">
                   <td><?php echo $value->codigo; ?></td>
                   <td><?php echo $value->ipress; ?></td>
+                  <td><?php echo $value->microred; ?></td>
                    <td><?php echo $value->categorias; ?></td>
                     <td><?php echo $value->tipos; ?></td>
                   <td><?php echo $value->provincias; ?></td>

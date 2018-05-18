@@ -14,6 +14,7 @@ class Ipress_m extends CI_Model {
 		$this->db->join("distritos","distritos.id_distritos=ipress.distrito");
 		$this->db->join("provincias","provincias.id_provincias=distritos.id_provincias");
 		$this->db->join("categorias","ipress.categoria=categorias.id_categorias");
+		$this->db->join("microred","ipress.microred=microred.id_microred");
 		$this->db->join("tipos","ipress.tipo=tipos.id_tipos");
 		$r = $this->db->get();  
 		return $r->result();
