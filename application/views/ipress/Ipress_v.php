@@ -81,7 +81,7 @@
                   <td><?php echo $value->provincias; ?></td>
                   <td><?php echo $value->distritos; ?></td>
                   <td><?php echo $value->fecha; ?></td>
-                  <td ><a class="btn btn-icon waves-effect waves-light btn-primary" href="<?php echo base_url().'Ipress_c/editar/'.$value->codigo;?>" ><i class="fa fa-pencil"></i></a> <button class="btn btn-icon waves-effect waves-light btn-danger" onclick="mostrar_eliminar(<?php echo $value->codigo; ?>)"  data-toggle="modal" data-target="#eliminar_modal" > <i class="fa fa-trash"></i> </button></td>
+                  <td ><a class="" href="<?php echo base_url().'Ipress_c/editar/'.$value->codigo;?>" ><i class="fa fa-pencil" style="color: #337ab7;" ></i></a> <a   onclick="mostrar_eliminar(<?php echo $value->codigo; ?>)"  data-toggle="modal" data-target="#eliminar_modal" > <i class="fa fa-trash" style="color: red; "></i> </a></td>
                 </tr>
                 <?php  } ?>
                 </tbody>

@@ -43,6 +43,18 @@ class Ipress_c extends CI_Controller {
 		echo json_encode($r);
 	}
 
+	public function validar_codigo()
+	{
+		$r = $this->db->query("select * from ipress where(codigo=".$this->input->post("id").")")->result();
+		$data = array();
+		if ($r) {
+			$data[]='0' ;
+		}else{
+			$data[]='1' ;
+		}
+		echo json_encode($data);
+	}
+
 	public function agregar()
 	{	
 		$this->Ipress_m->agregar();

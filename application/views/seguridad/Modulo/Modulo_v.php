@@ -73,7 +73,7 @@
                       <td><?php echo $value->nombre; ?></td>
                        <td><?php echo $value->url; ?></td>
                         <td><?php echo $value->id_padre; ?></td>
-                      <td ><a  href="<?php echo base_url().'Modulo_c/editar/'.$value->id_modulo;?>" ><i class="fa fa-pencil" style="color: #337ab7;" ></i></a>    <a  style="cursor: pointer;" onclick="mostrar_eliminar(<?php echo $value->id_modulo; ?>)"  data-toggle="modal" data-target="#eliminar_modal" > <i class="fa fa-trash" style="color: red; "></i> </button></td>
+                      <td ><a  href="<?php echo base_url().'Modulo_c/editar/'.$value->id_modulo;?>" ><i class="fa fa-pencil" style="color: #337ab7;" ></i></a>    <a  style="cursor: pointer;" onclick="mostrar_eliminar(<?php echo $value->id_modulo; ?>)"  data-toggle="modal" data-target="#eliminar_modal" > <i class="fa fa-trash" style="color: red; "></i> </a></td>
                     </tr>
                     <?php  } ?>
                   </tbody>

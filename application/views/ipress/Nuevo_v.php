@@ -59,7 +59,7 @@
                     <div class="col-md-6"> 
                       <div class="form-group">
                         <label for="codigo">Código*</label>
-                        <input type="text" name="codigo" parsley-trigger="change" required placeholder="Introduzca el código del Ipress" class="form-control solo-numero" id="codigo">
+                        <input type="text" name="codigo" parsley-trigger="change" onkeyup="validar_codigo()" required placeholder="Introduzca el código del Ipress" class="form-control solo-numero" id="codigo">
                       </div>                   
                       <div class="form-group">
                         <label for="ipress">Ipress*</label>
@@ -186,7 +186,7 @@
     var resolucion = $('#resolucion').val();
     var fecha = $('#datepicker').val();
     event.preventDefault();
-    if (ipress!=""&&microred!=""&&tipos!=""&&categorias!=""&&distritos!="0"&&provincias!="0"&&departamentos!="0"&&resolucion!=""&&fecha!="" ) {
+    if (ipress!=""&&microred!=""&&tipos!=""&&categorias!=""&&distritos!="0"&&provincias!="0"&&departamentos!="0"&&resolucion!=""&&fecha!=""&&codigo!="" ) {
 
       $.ajax({
         url: "<?php echo base_url();?>Ipress_c/agregar",
@@ -257,6 +257,30 @@
           $('#microred').append('<option value=""></option>');
           for (var i = 0; i < $object.length; i++) {
             $('#microred').append('<option value="'+$object[i].id_microred+'">'+$object[i].microred+'</option>');
+          }
+        }
+      });
+  }
+
+  function validar_codigo(){
+    var id = $('#codigo').val();
+    $.ajax({
+      url : "<?php echo base_url();?>Ipress_c/validar_codigo",
+      data : {id : id},
+      type : 'POST',
+        //dataType : 'json',(arrays)
+        success : function(data) {
+          $object = jQuery.parseJSON(data);
+          if ($object[0]=='0') {
+            swal({
+              title: "Error en el codigo",
+              text: "¡El codigo ingresado ya existe!",
+              type: "error",
+              showCancelButton: false,
+              confirmButtonClass: 'btn-danger btn-md waves-effect waves-light',
+              confirmButtonText: 'Ok!'
+            }); 
+            $('#codigo').val('');
           }
         }
       });
